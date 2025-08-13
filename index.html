@@ -109,6 +109,10 @@
 
         // Shared function for making the API call
         async function fetchReviews(prompt) {
+            if (!apiKey) {
+                throw new Error("API Key Missing: The API key is not available. Please ensure the Canvas environment is configured to provide one.");
+            }
+
             const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
             const payload = {
                 contents: chatHistory,
